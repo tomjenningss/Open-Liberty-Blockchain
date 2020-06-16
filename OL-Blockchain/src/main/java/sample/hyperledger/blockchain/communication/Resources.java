@@ -29,12 +29,13 @@ import sample.hyperledger.blockchain.model.*;
 
 @javax.ws.rs.Path("Resources")
 
-
 @ApplicationScoped
 public class Resources {
 	
 	//set this for the location of the wallet directory and the connection json file
-	static String pathRoot = "/Users/Shared/FabConnection/";
+	//static String pathRoot = "/Users/Shared/FabConnection/";
+	static String pathRoot = "";
+	static String getProperites = System.getProperty("os.name");
 	
 	static {
 		System.setProperty("org.hyperledger.fabric.sdk.service_discovery.as_localhost", "true");
@@ -50,12 +51,21 @@ public class Resources {
 	@javax.ws.rs.Path("Car")
 	@Operation(
 			summary = "Add a car to the ledger",
-			description = "Requires a unique key starting with CAR to be successfull")
+			description = "Requires a unique key starting with CAR to be successful")
 	public Car addCar(
 			Car aCar
 			)
 	{
 		try {
+			
+			if(getProperites.contains("WIN")) {
+				pathRoot = "C:/Users/Public/FabConnection/";
+				System.out.println("path root is on windows: " + pathRoot);
+			}else {
+				pathRoot = "/Users/Shared/FabConnection/";
+				System.out.println("path root is on linux: " + pathRoot);
+			}
+			
 			Path walletPath = Paths.get(pathRoot + "wallet");
 			Wallet wallet = Wallet.createFileSystemWallet(walletPath);
 			
@@ -112,6 +122,15 @@ public class Resources {
 			)
 	{
 		try {
+	
+			if(getProperites.contains("WIN")) {
+				pathRoot = "C:/Users/Public/FabConnection/";
+				System.out.println("path root is on windows: " + pathRoot);
+			}else {
+				pathRoot = "/Users/Shared/FabConnection/";
+				System.out.println("path root is on linux: " + pathRoot);
+			}
+			
 			Path walletPath = Paths.get(pathRoot + "wallet");
 			Wallet wallet = Wallet.createFileSystemWallet(walletPath);
 			
@@ -163,7 +182,8 @@ public class Resources {
 	@Operation(
 			summary = "Returns an individual car by key",
 			description = "Requires the key to be provided")
-	public String Querycar(@QueryParam("Key")String Key) 
+	public String Querycar(@QueryParam("Key")String Key
+			) 
 	{
 	
 		byte[] result = null;
@@ -171,6 +191,15 @@ public class Resources {
 		String passedOutput = "";
 		
 		try {
+
+			if(getProperites.contains("WIN")) {
+				pathRoot = "C:/Users/Public/FabConnection/";
+				System.out.println("path root is on windows: " + pathRoot);
+			}else {
+				pathRoot = "/Users/Shared/FabConnection/";
+				System.out.println("path root is on linux: " + pathRoot);
+			}
+			
 			Path walletPath = Paths.get(pathRoot + "wallet");
 			Wallet wallet = Wallet.createFileSystemWallet(walletPath);
 			
@@ -223,13 +252,23 @@ public class Resources {
 	@Operation(
 			summary = "Returns all cars",
 			description = "No input required")
-	public String Querycar() {
+	public String Querycar(
+			) {
 		
 		byte[] result = null;
 		String outputString = "";
 		String passedOutput = "";
-		
+				
 		try {
+
+			if(getProperites.contains("WIN")) {
+				pathRoot = "C:/Users/Public/FabConnection/";
+				System.out.println("path root is on windows: " + pathRoot);
+			}else {
+				pathRoot = "/Users/Shared/FabConnection/";
+				System.out.println("path root is on linux: " + pathRoot);
+			}
+
 			Path walletPath = Paths.get(pathRoot + "wallet");
 			Wallet wallet = Wallet.createFileSystemWallet(walletPath);
 			
