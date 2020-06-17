@@ -11,7 +11,6 @@
  *******************************************************************************/
  // end::comment[]
 package sample.hyperledger.blockchain.system;
-
 import java.util.Properties;
 
 import javax.ws.rs.GET;

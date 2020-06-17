@@ -2,9 +2,7 @@
 * @author  Thomas Jennings
 * @since   2020-03-25
 */
-
 package sample.hyperledger.blockchain.communication;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,15 +26,13 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import sample.hyperledger.blockchain.model.*;
 
 @javax.ws.rs.Path("Resources")
-
 @ApplicationScoped
 public class Resources {
 	
 	//set this for the location of the wallet directory and the connection json file
-	//static String pathRoot = "/Users/Shared/FabConnection/";
 	static String pathRoot = "";
-	static String getProperites = System.getProperty("os.name");
-	
+	static String getProperites = System.getProperty("os.name").toLowerCase();
+
 	static {
 		System.setProperty("org.hyperledger.fabric.sdk.service_discovery.as_localhost", "true");
 	}
@@ -58,14 +54,11 @@ public class Resources {
 	{
 		try {
 			
-			if(getProperites.contains("WIN")) {
+			if(getProperites.contains("win")) {
 				pathRoot = "C:/Users/Public/FabConnection/";
-				System.out.println("path root is on windows: " + pathRoot);
 			}else {
 				pathRoot = "/Users/Shared/FabConnection/";
-				System.out.println("path root is on linux: " + pathRoot);
 			}
-			
 			Path walletPath = Paths.get(pathRoot + "wallet");
 			Wallet wallet = Wallet.createFileSystemWallet(walletPath);
 			
@@ -122,13 +115,10 @@ public class Resources {
 			)
 	{
 		try {
-	
-			if(getProperites.contains("WIN")) {
+			if(getProperites.contains("win")) {
 				pathRoot = "C:/Users/Public/FabConnection/";
-				System.out.println("path root is on windows: " + pathRoot);
 			}else {
 				pathRoot = "/Users/Shared/FabConnection/";
-				System.out.println("path root is on linux: " + pathRoot);
 			}
 			
 			Path walletPath = Paths.get(pathRoot + "wallet");
@@ -170,8 +160,7 @@ public class Resources {
 			throw new javax.ws.rs.ServiceUnavailableException();
 		}	
 	}
-	
-	
+
 	@Timed(name = "QueryACarProcessingTime",
 	         tags = {"method=GET"},
 	         absolute = true,
@@ -185,19 +174,15 @@ public class Resources {
 	public String Querycar(@QueryParam("Key")String Key
 			) 
 	{
-	
 		byte[] result = null;
 		String outputString = "";
 		String passedOutput = "";
 		
 		try {
-
-			if(getProperites.contains("WIN")) {
+			if(getProperites.contains("win")) {
 				pathRoot = "C:/Users/Public/FabConnection/";
-				System.out.println("path root is on windows: " + pathRoot);
 			}else {
 				pathRoot = "/Users/Shared/FabConnection/";
-				System.out.println("path root is on linux: " + pathRoot);
 			}
 			
 			Path walletPath = Paths.get(pathRoot + "wallet");
@@ -241,7 +226,7 @@ public class Resources {
 			throw new javax.ws.rs.ServiceUnavailableException();
 		}
 	}
-	
+
 	@Timed(name = "QueryCarsProcessingTime",
 	         tags = {"method=GET"},
 	         absolute = true,
@@ -254,19 +239,16 @@ public class Resources {
 			description = "No input required")
 	public String Querycar(
 			) {
-		
 		byte[] result = null;
 		String outputString = "";
 		String passedOutput = "";
-				
+		
 		try {
 
-			if(getProperites.contains("WIN")) {
+			if(getProperites.contains("win")) {
 				pathRoot = "C:/Users/Public/FabConnection/";
-				System.out.println("path root is on windows: " + pathRoot);
 			}else {
 				pathRoot = "/Users/Shared/FabConnection/";
-				System.out.println("path root is on linux: " + pathRoot);
 			}
 
 			Path walletPath = Paths.get(pathRoot + "wallet");

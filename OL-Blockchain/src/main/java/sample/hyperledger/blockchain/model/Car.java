@@ -2,9 +2,7 @@
 * @author  Thomas Jennings
 * @since   2020-03-25
 */
-
 package sample.hyperledger.blockchain.model;
-
 public class Car {
 
 		private String make;
